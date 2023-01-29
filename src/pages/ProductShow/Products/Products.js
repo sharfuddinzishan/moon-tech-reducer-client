@@ -10,7 +10,7 @@ const Products = () => {
     let content
     if (loading) return <Loading></Loading>
     if (error) return <p> Please Reload Again!</p>
-    if (!loading && !error && products.length === 0) return <> {toast.error('No Product Found To Display')} </>
+    if (!loading && !error && products.length === 0) return <><p>No Product Found To Display</p> </>
     if (!loading && !error && products.length) {
         content = products?.map(
             product =>
