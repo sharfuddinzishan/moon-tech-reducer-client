@@ -6,6 +6,7 @@ const ProductContexts = createContext()
 
 const ProductProvider = ({ children }) => {
     const [state, dispatch] = useReducer(productReducer, initialStates)
+    console.log(state.cart);
     useEffect(() => {
         dispatch({ type: actionTypes.FETCHING_START })
         axios.get(`http://localhost:5000/products`)

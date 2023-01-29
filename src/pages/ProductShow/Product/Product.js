@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { FaCartPlus, FaStudiovinari } from 'react-icons/fa';
+import { actionTypes } from '../../../state/ProductsStates/actionTypes';
+import { useProducts } from '../../../state/ProductsStates/contexts/ProductProvider/ProductProvider';
 
 const Product = ({ product }) => {
+    const { dispatch } = useProducts()
     const { model, image, rating, price, spec } = product || {}
     const { processor, motherboard, ram, graphics, storage } = spec[0] || {}
     return (
@@ -24,7 +27,7 @@ const Product = ({ product }) => {
             <Card.Body>
                 <Row>
                     <Col xs={12} md={10}>
-                        <Button className='w-100 mb-1' variant='primary'><FaCartPlus /> &nbsp; Add To Cart</Button>
+                        <Button className='w-100 mb-1' variant='primary' onClick={() => dispatch({ type: actionTypes.ADD_TO_CART, payload: product })}><FaCartPlus /> &nbsp; Add To Cart</Button>
                     </Col>
                     <Col xs={12} md={2}>
                         <Button className='w-100' variant='primary'><FaStudiovinari /></Button>
